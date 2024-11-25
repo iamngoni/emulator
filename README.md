@@ -16,4 +16,3 @@ go build
 
 ## issues
 Well if you have any issues, feel free to fix the code and maybe (just maybe) create a PR 😂
-```
