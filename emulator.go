@@ -120,19 +120,25 @@ func main() {
 		resIndex := promptInt(reader, "Enter number", 1, len(resolutions)) - 1
 		config.Resolution = strings.Split(resolutions[resIndex], " ")[0]
 	}
-
 	if config.DeviceType == "custom" {
 		fmt.Println("\nSelect screen density:")
 		densities := []string{
-			"320 (xhdpi)",
-			"240 (hdpi)",
-			"160 (mdpi)",
+			"560 (xxxhdpi)", // For 4K+ displays
+			"480 (xxhdpi)",  // Common in modern tablets and high-end devices
+			"400 (2.5x)",    // Intermediate density
+			"320 (xhdpi)",   // Standard tablet density
+			"280 (1.75x)",   // Intermediate density
+			"240 (hdpi)",    // Lower-end tablets
+			"213 (tvdpi)",   // TV density
+			"160 (mdpi)",    // Base density (rarely used in modern devices)
 		}
 		for i, den := range densities {
 			fmt.Printf("%d. %s\n", i+1, den)
 		}
 		denIndex := promptInt(reader, "Enter number", 1, len(densities)) - 1
 		config.Density, _ = strconv.Atoi(strings.Split(densities[denIndex], " ")[0])
+
+		fmt.Printf("\nSelected density: %d dpi\n", config.Density)
 	}
 
 	config.HasKeyboard = promptYesNo(reader, "\nEmulate hardware keyboard?")
